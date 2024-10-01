@@ -8,10 +8,16 @@ private:
 public:
      Player();
      ~Player();
+     void SetSymbol(char);
 };
- Player::Player()
+
+class Ai: public Player
 {
-}
- Player::~Player()
-{
-}
+private:
+     
+public:
+     Ai();
+     ~Ai(); 
+};
+
+

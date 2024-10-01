@@ -10,7 +10,4 @@ private:
 public:
     Board();
     ~Board();
-
-    void run();
-    bool isWinning();
 };
