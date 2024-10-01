@@ -7,3 +7,4 @@
 4 Evitarea atingerei de functile create in trecut, daca facem, ea trebuie retestata
 6 !!! EVITAM schimbarea datelor de intrare/iesire a functiilor, poate duce la probleme in alte
    parti ale programului/ probleme cu merge-ul in main !!!
+7 Fiecare functie e comentata, cel putin input/output, pentru a putea lucra cu functiile unor altora
