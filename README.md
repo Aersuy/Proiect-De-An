@@ -1,9 +1,16 @@
 Proiect de an pentru Echipa 111315.
+R. Moldova UTM FCIM ISA
+
 Membrii:
+
 Raileanu Vlad - SI-232
+
 Gadilica Nichita SI-232
+
 Nicu Iurie SI-232
+
 Tema: Crearea unei IA pentru connect 4 folosind algoritmele min-max si alpha-beta pruning.
+
 Crearea unei inteligențe artificiale pentru jocul connect 4 care va fi capabilă să facă decizii cele mai optimale decizii într-un timp cât mai scurt posibil.
 La baza acestei IA v-or sta algoritmul MinMax și Alpha-beta pruning.
 
