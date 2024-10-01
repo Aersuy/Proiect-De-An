@@ -1,0 +1,9 @@
+1 Nume la variabile si functii sa fie clare, iar variabilele membere de clase trebuie sa fie in formatul
+   c_numeVariabile, iar la variabilele in formatul numeVaribilaExemplu
+   Nume functie in acelasi format.
+2 Orice functie al carii functionalitati nu a fost testata, trebuie sa aiba //netestat la declaratie
+  iar daca ea a fost testata, trebuie sa aiba //testat langa declaratie
+3 Daca o bucata de cod e mai mare decat 3 lini, ea trebuie sa aiba functia sa
+4 Evitarea atingerei de functile create in trecut, daca facem, ea trebuie retestata
+6 !!! EVITAM schimbarea datelor de intrare/iesire a functiilor, poate duce la probleme in alte
+   parti ale programului/ probleme cu merge-ul in main !!!

@@ -1,3 +1,4 @@
+#pragma once
 #include "player.hpp"
 #include <iostream>
 Player::Player()
@@ -11,9 +12,17 @@ Player::Player(char inputChar)
 {
     c_symbol = inputChar;
 }
+Player::~Player()
+{
+    // empty but needs to exist to compile
+}
 Ai::Ai()
 {   this->setWinStatus(false);
     c_symbol = 'A';
+}
+Ai::~Ai()
+{
+     // empty but needs to exist to compile
 }
 void Player::setWinStatus(bool input)
 {

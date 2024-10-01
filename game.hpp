@@ -1,9 +1,10 @@
+#pragma once
 class Game
 {
 private:
    
 public:
  Game();
-     Game();
+    ~Game();
      void run();
 };
