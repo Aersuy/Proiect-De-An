@@ -3,21 +3,26 @@
 class Player
 {
 private:
-      char c_symbol;
       bool c_hasWon;
+protected: 
+      char c_symbol;
 public:
-     Player();
-     ~Player();
-     void SetSymbol(char);
+     Player(); // netestat
+     Player(char); // netestat
+    virtual ~Player();
+
+    void setWinStatus(bool); // netestat
 };
 
 class Ai: public Player
 {
-private:
-     
+private: 
+ // the max depth that the ai will go to
+     int c_depth{}; 
 public:
-     Ai();
+     Ai(); // netestat
      ~Ai(); 
+     void setDepth(int); // netestat
 };
 
 

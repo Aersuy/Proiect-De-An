@@ -7,9 +7,3 @@ public:
      Game();
      void run();
 };
- Game::Game()
-{
-}
- Game::~Game()
-{
-}
