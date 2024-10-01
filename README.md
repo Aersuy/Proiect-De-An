@@ -11,3 +11,5 @@ Topic: Creating an AI for Connect 4 using Min-Max and Alpha-Beta Pruning Algorit
 
 Creating an artificial intelligence for the game of Connect 4 that will be capable of making the most optimal decisions in the shortest possible time.
 This AI will be based on the Min-Max algorithm and Alpha-Beta pruning.
+
+Compiled using msys64/g++ inside of VS Code.
