@@ -1,4 +1,4 @@
-1 Nume la variabile si functii sa fie clare, iar variabilele membere de clase trebuie sa fie in formatul
+1 Nume la variabile si functii sa fie clare si lungi(fara n,m,t etc), iar variabilele membere de clase trebuie sa fie in formatul
    c_numeVariabile, iar la variabilele in formatul numeVaribilaExemplu
    Nume functie in acelasi format.
 2 Orice functie al carii functionalitati nu a fost testata, trebuie sa aiba //netestat la declaratie
