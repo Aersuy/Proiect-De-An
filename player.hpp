@@ -1,5 +1,6 @@
 #pragma once
 #include <stdbool.h>
+#include "board.hpp"
 class Player
 {
 private:
@@ -10,9 +11,11 @@ public:
      Player(); // netestat
      Player(char); // netestat
     virtual ~Player();
-
-    void setWinStatus(bool); // netestat
-    char getSym();
+    void setWinStatus(bool); // testat
+    bool getWinStat(); // testat
+    char getSym(); // testat
+    void playerTurn(); // neimplementat
+  
 };
 
 class Ai: public Player
@@ -23,6 +26,7 @@ private:
 public:
      Ai() : Player('A'){}; // netestat
      ~Ai(); 
+     void aiTurn(); // neimplementat
      void setDepth(int); // netestat
 };
 

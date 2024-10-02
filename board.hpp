@@ -14,5 +14,6 @@ public:
     Board(); // testat
     ~Board();
     void printBoard(); // testat
-    void dropPiece(Player&,int);
+    void dropPiece(Player&,int); // testat
+    void hasWon(Player&); //testat
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include "player.hpp"
+#include "board.hpp"
 #include <iostream>
 Player::Player()
 {      char inputChar{};
@@ -11,15 +12,13 @@ Player::Player()
 Player::Player(char inputChar)
 {
     c_symbol = inputChar;
+    c_hasWon = false;
 }
 Player::~Player()
 {
     // empty but needs to exist to compile
 }
-/*Ai::Ai()
-{   this->setWinStatus(false);
-    c_symbol = 'A';
-}*/
+
 Ai::~Ai()
 {
      // empty but needs to exist to compile
@@ -35,4 +34,9 @@ void Ai::setDepth(int depth)
 char Player::getSym()
 {
     return c_symbol;
+}
+
+bool Player::getWinStat()
+{
+    return c_hasWon;
 }
