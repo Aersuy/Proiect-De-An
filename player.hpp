@@ -12,6 +12,7 @@ public:
     virtual ~Player();
 
     void setWinStatus(bool); // netestat
+    char getSym();
 };
 
 class Ai: public Player
@@ -20,7 +21,7 @@ private:
  // the max depth that the ai will go to
      int c_depth{}; 
 public:
-     Ai(); // netestat
+     Ai() : Player('A'){}; // netestat
      ~Ai(); 
      void setDepth(int); // netestat
 };

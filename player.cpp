@@ -16,10 +16,10 @@ Player::~Player()
 {
     // empty but needs to exist to compile
 }
-Ai::Ai()
+/*Ai::Ai()
 {   this->setWinStatus(false);
     c_symbol = 'A';
-}
+}*/
 Ai::~Ai()
 {
      // empty but needs to exist to compile
@@ -31,4 +31,8 @@ void Player::setWinStatus(bool input)
 void Ai::setDepth(int depth)
 {
     c_depth = depth;
+}
+char Player::getSym()
+{
+    return c_symbol;
 }

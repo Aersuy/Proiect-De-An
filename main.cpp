@@ -2,9 +2,13 @@
 #include "player.cpp"
 #include "game.cpp"
 int main()
-{    Game game;
-     game.run();
-     // Nu adauga nimic in main
-     // Totul va fi in run()  
+{    
+    Board b;
+    b.printBoard();
+    Ai pl;
+    b.dropPiece(pl,2);
+    b.dropPiece(pl,2);
+    b.dropPiece(pl,3);
+    b.printBoard();
     return 0;
 }
