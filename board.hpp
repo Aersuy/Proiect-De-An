@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "player.hpp"
-#include <stdbool.h>
+
 class Board
 {
 private:
@@ -12,8 +12,9 @@ private:
      std::vector<std::vector<char>> c_board;
 public:
     Board(); // testat
-    ~Board();
+    ~Board(); // neimplementat
     void printBoard(); // testat
     void dropPiece(Player&,int); // testat
     void hasWon(Player&); //testat
+    void playerTurn(Player&);
 };

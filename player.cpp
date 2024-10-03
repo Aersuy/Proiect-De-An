@@ -1,7 +1,7 @@
 #pragma once
 #include "player.hpp"
-#include "board.hpp"
-#include <iostream>
+#include "board.cpp"
+#include <limits>
 Player::Player()
 {      char inputChar{};
        std::cout << "Da caracterul pe care vrei sa il folosesti in joc(. si A exclus) \n";

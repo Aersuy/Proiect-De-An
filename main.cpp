@@ -5,24 +5,24 @@ int main()
 {    
     Board b;
     b.printBoard();
-    Ai pl;
     Player p;
-    b.dropPiece(pl,2);
-    b.dropPiece(pl,2);
-    b.dropPiece(pl,2);
-    b.dropPiece(p,3);
-    b.dropPiece(p,4);
-    b.dropPiece(p,5);
-    b.dropPiece(pl,3);
-    b.dropPiece(pl,4);
-    b.dropPiece(pl,5);
-   
+    Player p2;
+    b.playerTurn(p);
+    b.playerTurn(p);
+    b.playerTurn(p);
+    b.playerTurn(p);
+    b.playerTurn(p);
+    b.playerTurn(p);
+    b.playerTurn(p);
+    b.playerTurn(p);
     b.printBoard();
-    b.hasWon(pl);
-    if (pl.getWinStat())
+    if (p.getWinStat())
     {
-        std::cout << "Bine \n";
+        std::cout << "Merge \n";
     }
+    
+
+
     
     
     return 0;

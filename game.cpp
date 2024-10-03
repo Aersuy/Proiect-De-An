@@ -10,12 +10,12 @@ Game::~Game()
 {
 // no use for now, but needs to exist to compile
 }
-/* commented for program to compile
+/*
 void Game::run()
 {    Ai opponent;
      Player you;
      Board board;
-    while (you.hasWon() == false && opponent.hasWon() == false)
+    while (you.getWinStat() == false && opponent.getWinStat() == false)
     {
         you.playerTurn();
         

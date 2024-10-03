@@ -1,7 +1,9 @@
 #pragma once
 #include "board.hpp"
-#include "iostream"
+#include <iostream>
 #include "game.hpp"
+#include <limits>
+
 
 Board::Board() { 
       c_board = std::vector<std::vector<char>>(c_boardHeight, std::vector<char>(c_boardWidth, '.'));
@@ -85,5 +87,39 @@ void Board::hasWon(Player& Player)
         }
     }
 
+
+}
+
+void Board::playerTurn(Player& play)
+{
+  
+ int col;
+   while (true)
+    {
+        std::cout << "Da coloana \n";
+        std::cin >> col;
+
+        if (std::cin.fail()) 
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Not an integer \n";
+            continue;
+        }
+
+        if (col < 0 || col > 10)
+        {   std::cout << "Not in the column range \n";
+            continue;
+        }
+        
+        if (c_top[col - 1] < 0)
+        {    std::cout << "Column full \n";
+            continue;
+        }
+        
+        break;
+    }
+    this->dropPiece(play,col - 1);
+    this->hasWon(play);
 
 }

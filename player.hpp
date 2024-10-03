@@ -1,6 +1,8 @@
 #pragma once
-#include <stdbool.h>
 #include "board.hpp"
+#include "board.cpp"
+#include "game.hpp"
+
 class Player
 {
 private:
@@ -10,11 +12,11 @@ protected:
 public:
      Player(); // testat
      Player(char); // testat
-    virtual ~Player();
+    virtual ~Player();  // neimplementat
     void setWinStatus(bool); // testat
     bool getWinStat(); // testat
     char getSym(); // testat
-    void playerTurn(); // neimplementat
+   
   
 };
 
@@ -25,7 +27,7 @@ private:
      int c_depth{}; 
 public:
      Ai() : Player('A'){}; // netestat
-     ~Ai(); 
+     ~Ai();    // neimplementat
      void aiTurn(); // neimplementat
      void setDepth(int); // netestat
 };
