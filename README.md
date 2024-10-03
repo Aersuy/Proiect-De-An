@@ -8,7 +8,7 @@ Membrii:
 
 Raileanu Vlad 
 
-Gadilica Nichita 
+Gîdilica Nichita 
 
 Nicu Iurie
 
