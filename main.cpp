@@ -3,24 +3,9 @@
 #include "game.cpp"
 int main()
 {    
-    Board b;
-    b.printBoard();
-    Player p;
-    Player p2;
-    b.playerTurn(p);
-    b.playerTurn(p);
-    b.playerTurn(p);
-    b.playerTurn(p);
-    b.playerTurn(p);
-    b.playerTurn(p);
-    b.playerTurn(p);
-    b.playerTurn(p);
-    b.printBoard();
-    if (p.getWinStat())
-    {
-        std::cout << "Merge \n";
-    }
-    
+    Game g;
+    g.run();
+   
 
 
     

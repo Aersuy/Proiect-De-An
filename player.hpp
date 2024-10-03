@@ -2,11 +2,12 @@
 #include "board.hpp"
 #include "board.cpp"
 #include "game.hpp"
-
+#include <string>
 class Player
 {
 private:
       bool c_hasWon;
+      std::string c_userName;
 protected: 
       char c_symbol;
 public:

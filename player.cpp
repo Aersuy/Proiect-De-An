@@ -4,15 +4,38 @@
 #include <limits>
 Player::Player()
 {      char inputChar{};
-       std::cout << "Da caracterul pe care vrei sa il folosesti in joc(. si A exclus) \n";
-       std::cin >> inputChar;
+          while (true) {
+        std::cout << "Enter character: ";
+        std::cin >> inputChar;
+
+       
+        if (std::cin.fail()) {
+            std::cin.clear(); 
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input. Please enter a valid character.\n";
+        } 
+        if (inputChar == 'A')
+        {
+            std::cout << "Invalid input. 'A' is taken. \n";
+        }
+        else
+        {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+            break;
+        }
+        
+    }
        c_symbol = inputChar;
        this->setWinStatus(false);
+       std::cout << "Da username-ul \n";
+       std::cin >> c_userName;
 }
 Player::Player(char inputChar)
-{
+{    
     c_symbol = inputChar;
     c_hasWon = false;
+    if(inputChar == 'A')
+    c_userName = "Ai";
 }
 Player::~Player()
 {
