@@ -1,13 +1,16 @@
 Proiect de an pentru Echipa 111315.
+
+Grupa: SI-232 
+
 R. Moldova UTM FCIM ISA
 
 Membrii:
 
-Raileanu Vlad - SI-232
+Raileanu Vlad 
 
-Gadilica Nichita SI-232
+Gadilica Nichita 
 
-Nicu Iurie SI-232
+Nicu Iurie
 
 Tema: Crearea unei IA pentru connect 4 folosind algoritmele min-max si alpha-beta pruning.
 
