@@ -8,8 +8,8 @@ private:
 protected: 
       char c_symbol;
 public:
-     Player(); // netestat
-     Player(char); // netestat
+     Player(); // testat
+     Player(char); // testat
     virtual ~Player();
     void setWinStatus(bool); // testat
     bool getWinStat(); // testat

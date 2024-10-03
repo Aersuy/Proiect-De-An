@@ -10,7 +10,7 @@ Game::~Game()
 {
 // no use for now, but needs to exist to compile
 }
-/*
+/* commented for program to compile
 void Game::run()
 {    Ai opponent;
      Player you;
@@ -18,7 +18,9 @@ void Game::run()
     while (you.hasWon() == false && opponent.hasWon() == false)
     {
         you.playerTurn();
+        
 
     }
     
-}*/
+}
+*/
