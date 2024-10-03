@@ -3,11 +3,13 @@
 #include "board.cpp"
 #include "game.hpp"
 #include <string>
+#include <set>
 class Player
 {
 private:
       bool c_hasWon;
       std::string c_userName;
+      static std::set<char> c_usedCharacters;
 protected: 
       char c_symbol;
 public:

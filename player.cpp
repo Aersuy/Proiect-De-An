@@ -2,6 +2,7 @@
 #include "player.hpp"
 #include "board.cpp"
 #include <limits>
+std::set<char> Player::c_usedCharacters;
 Player::Player()
 {      char inputChar{};
           while (true) {
@@ -13,19 +14,22 @@ Player::Player()
             std::cin.clear(); 
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "Invalid input. Please enter a valid character.\n";
+            continue;
         } 
-        if (inputChar == 'A')
+        if (c_usedCharacters.find(inputChar) != c_usedCharacters.end())
         {
-            std::cout << "Invalid input. 'A' is taken. \n";
+            std::cout << "Invalid input.Character is taken. \n";
+            continue;
         }
         else
         {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
             break;
         }
         
     }
+
        c_symbol = inputChar;
+       c_usedCharacters.insert(inputChar);
        this->setWinStatus(false);
        std::cout << "Da username-ul \n";
        std::cin >> c_userName;
@@ -36,6 +40,7 @@ Player::Player(char inputChar)
     c_hasWon = false;
     if(inputChar == 'A')
     c_userName = "Ai";
+    c_usedCharacters.insert(inputChar);
 }
 Player::~Player()
 {

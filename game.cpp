@@ -13,7 +13,8 @@ Game::~Game()
 }
 
 void Game::run()
-{    Player me;
+{    Ai yes;
+     Player me;
      Player you;
      Board board;
     while (true)
