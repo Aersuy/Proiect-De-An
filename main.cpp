@@ -3,9 +3,12 @@
 #include "game.cpp"
 int main()
 {    
-    Game g;
-    g.run();
-   
+    Board b;
+    Player p;
+     b.playerTurn(p);
+    b.printBoard();
+    b.undoDrop(3);
+    b.printBoard();
 
 
     

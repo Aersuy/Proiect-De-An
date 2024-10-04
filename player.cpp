@@ -18,7 +18,7 @@ Player::Player()
         } 
         if (c_usedCharacters.find(inputChar) != c_usedCharacters.end())
         {
-            std::cout << "Invalid input.Character is taken. \n";
+            std::cout << "Invalid input(Character is taken) \n";
             continue;
         }
         else

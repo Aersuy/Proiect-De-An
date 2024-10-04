@@ -41,7 +41,7 @@ void Board::printBoard()
 }
 
 void Board::dropPiece(Player& player,int col)
-{  
+{   col--;
     c_board[c_top[col]][col] = player.getSym();
     c_top[col]--; 
 }
@@ -119,7 +119,21 @@ void Board::playerTurn(Player& play)
         
         break;
     }
-    this->dropPiece(play,col - 1);
+    this->dropPiece(play,col);
     this->hasWon(play);
 
+}
+bool Board::canDropPiece(int col)
+{
+   if(c_top[col - 1] < 0) 
+ { return false;}
+
+   return true;
+}
+
+void Board::undoDrop(int col)
+{    col--;
+      c_top[col]++; 
+     c_board[c_top[col]][col]  = '.';
+   
 }

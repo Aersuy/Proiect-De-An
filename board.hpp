@@ -15,6 +15,8 @@ public:
     ~Board(); // neimplementat
     void printBoard(); // testat
     void dropPiece(Player&,int); // testat
+    bool canDropPiece(int);
     void hasWon(Player&); //testat
     void playerTurn(Player&);
+    void undoDrop(int);
 };
