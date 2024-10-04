@@ -137,3 +137,115 @@ void Board::undoDrop(int col)
      c_board[c_top[col]][col]  = '.';
    
 }
+int Board::evaluatePosition(Ai& ai,Player& player)
+{  this->hasWon(ai);
+   this->hasWon(player);
+    if (ai.getWinStat())
+    {
+        return 1000;
+    }
+    if (player.getWinStat())
+    {
+        return -1000;
+    } 
+    int score;
+     for (int row = 0; row < c_boardHeight; ++row) {
+        for (int col = 0; col < c_boardWidth; ++col) {
+            char current = c_board[row][col];
+
+            // Check for AI pieces
+            if (current == ai.getSym()) {
+                score += evaluatePiece(ai,row,col);
+            }
+            // Check for Player pieces
+            else if (current == player.getSym()) {
+                score -= evaluatePiece(player,row,col);
+            }
+        }
+    }
+
+    return score; 
+}
+    
+    
+
+// Evaluate a piece at a specific row and column for the given player
+int Board::evaluatePiece(Player& player, int row, int col) {
+    char symbol = player.getSym();
+    int value = 0;
+
+    // Check horizontal (left and right)
+    int horizontalCount = 1; // Start with the current piece
+    for (int i = 1; i < 4; ++i) { // Check to the right
+        if (col + i < c_boardWidth && c_board[row][col + i] == symbol) {
+            horizontalCount++;
+        } else {
+            break;
+        }
+    }
+    for (int i = 1; i < 4; ++i) { // Check to the left
+        if (col - i >= 0 && c_board[row][col - i] == symbol) {
+            horizontalCount++;
+        } else {
+            break;
+        }
+    }
+    if (horizontalCount >= 4) value += 100; // Winning move
+    else if (horizontalCount == 3) value += 10; // Potential win
+    else if (horizontalCount == 2) value += 1; // Threat
+
+    // Check vertical (downwards)
+    int verticalCount = 1; // Start with the current piece
+    for (int i = 1; i < 4; ++i) { // Check down
+        if (row + i < c_boardHeight && c_board[row + i][col] == symbol) {
+            verticalCount++;
+        } else {
+            break;
+        }
+    }
+    if (verticalCount >= 4) value += 100; // Winning move
+    else if (verticalCount == 3) value += 10; // Potential win
+    else if (verticalCount == 2) value += 1; // Threat
+
+    // Check diagonal (bottom-right and top-left)
+    int diagonalCount1 = 1; // Start with the current piece
+    for (int i = 1; i < 4; ++i) { // Check bottom-right
+        if (row + i < c_boardHeight && col + i < c_boardWidth && c_board[row + i][col + i] == symbol) {
+            diagonalCount1++;
+        } else {
+            break;
+        }
+    }
+    for (int i = 1; i < 4; ++i) { // Check top-left
+        if (row - i >= 0 && col - i >= 0 && c_board[row - i][col - i] == symbol) {
+            diagonalCount1++;
+        } else {
+            break;
+        }
+    }
+    if (diagonalCount1 >= 4) value += 100; // Winning move
+    else if (diagonalCount1 == 3) value += 10; // Potential win
+    else if (diagonalCount1 == 2) value += 1; // Threat
+
+    // Check diagonal (bottom-left and top-right)
+    int diagonalCount2 = 1; // Start with the current piece
+    for (int i = 1; i < 4; ++i) { // Check bottom-left
+        if (row + i < c_boardHeight && col - i >= 0 && c_board[row + i][col - i] == symbol) {
+            diagonalCount2++;
+        } else {
+            break;
+        }
+    }
+    for (int i = 1; i < 4; ++i) { // Check top-right
+        if (row - i >= 0 && col + i < c_boardWidth && c_board[row - i][col + i] == symbol) {
+            diagonalCount2++;
+        } else {
+            break;
+        }
+    }
+    if (diagonalCount2 >= 4) value += 100; // Winning move
+    else if (diagonalCount2 == 3) value += 10; // Potential win
+    else if (diagonalCount2 == 2) value += 1; // Threat
+
+    return value; // Return the evaluation score for this piece
+}

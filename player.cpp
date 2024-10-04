@@ -68,3 +68,7 @@ bool Player::getWinStat()
 {
     return c_hasWon;
 }
+int Ai::getDepth()
+{
+    return c_depth;
+}

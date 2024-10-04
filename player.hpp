@@ -8,7 +8,7 @@ class Player
 {
 private:
       bool c_hasWon;
-      std::string c_userName;
+      std::string c_userName{};
       static std::set<char> c_usedCharacters;
 protected: 
       char c_symbol;
@@ -33,6 +33,8 @@ public:
      ~Ai();    // neimplementat
      void aiTurn(); // neimplementat
      void setDepth(int); // netestat
+     int getDepth();
+
 };
 
 
