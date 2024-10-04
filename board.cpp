@@ -153,13 +153,14 @@ int Board::evaluatePosition(Ai& ai,Player& player)
         for (int col = 0; col < c_boardWidth; ++col) {
             char current = c_board[row][col];
 
-            // Check for AI pieces
             if (current == ai.getSym()) {
                 score += evaluatePiece(ai,row,col);
+                std::cout << score << '\n';
             }
-            // Check for Player pieces
+           
             else if (current == player.getSym()) {
                 score -= evaluatePiece(player,row,col);
+                std::cout << score << '\n';
             }
         }
     }
@@ -169,21 +170,20 @@ int Board::evaluatePosition(Ai& ai,Player& player)
     
     
 
-// Evaluate a piece at a specific row and column for the given player
+
 int Board::evaluatePiece(Player& player, int row, int col) {
     char symbol = player.getSym();
     int value = 0;
 
-    // Check horizontal (left and right)
-    int horizontalCount = 1; // Start with the current piece
-    for (int i = 1; i < 4; ++i) { // Check to the right
+    int horizontalCount = 1; 
+    for (int i = 1; i < 4; ++i) { 
         if (col + i < c_boardWidth && c_board[row][col + i] == symbol) {
             horizontalCount++;
         } else {
             break;
         }
     }
-    for (int i = 1; i < 4; ++i) { // Check to the left
+    for (int i = 1; i < 4; ++i) { 
         if (col - i >= 0 && c_board[row][col - i] == symbol) {
             horizontalCount++;
         } else {
@@ -194,11 +194,20 @@ int Board::evaluatePiece(Player& player, int row, int col) {
     else if (horizontalCount == 3) value += 10; // Potential win
     else if (horizontalCount == 2) value += 1; // Threat
 
-    // Check vertical (downwards)
-    int verticalCount = 1; // Start with the current piece
-    for (int i = 1; i < 4; ++i) { // Check down
+
+    int verticalCount = 1;
+    for (int i = 1; i < 4; ++i) {
         if (row + i < c_boardHeight && c_board[row + i][col] == symbol) {
             verticalCount++;
+            std::cout << row << ' ' << col << '\n';
+        } else {
+            break;
+        }
+    }
+    for (int i = 1; i < 4; ++i) {
+        if (row - i > 1 && c_board[row - i][col] == symbol) {
+            verticalCount++;
+            std::cout << row << ' ' << col << '\n';
         } else {
             break;
         }
@@ -207,16 +216,16 @@ int Board::evaluatePiece(Player& player, int row, int col) {
     else if (verticalCount == 3) value += 10; // Potential win
     else if (verticalCount == 2) value += 1; // Threat
 
-    // Check diagonal (bottom-right and top-left)
-    int diagonalCount1 = 1; // Start with the current piece
-    for (int i = 1; i < 4; ++i) { // Check bottom-right
+  
+    int diagonalCount1 = 1; 
+    for (int i = 1; i < 4; ++i) { 
         if (row + i < c_boardHeight && col + i < c_boardWidth && c_board[row + i][col + i] == symbol) {
             diagonalCount1++;
         } else {
             break;
         }
     }
-    for (int i = 1; i < 4; ++i) { // Check top-left
+    for (int i = 1; i < 4; ++i) { 
         if (row - i >= 0 && col - i >= 0 && c_board[row - i][col - i] == symbol) {
             diagonalCount1++;
         } else {
@@ -227,9 +236,9 @@ int Board::evaluatePiece(Player& player, int row, int col) {
     else if (diagonalCount1 == 3) value += 10; // Potential win
     else if (diagonalCount1 == 2) value += 1; // Threat
 
-    // Check diagonal (bottom-left and top-right)
-    int diagonalCount2 = 1; // Start with the current piece
-    for (int i = 1; i < 4; ++i) { // Check bottom-left
+    
+    int diagonalCount2 = 1; 
+    for (int i = 1; i < 4; ++i) { 
         if (row + i < c_boardHeight && col - i >= 0 && c_board[row + i][col - i] == symbol) {
             diagonalCount2++;
         } else {
@@ -247,5 +256,5 @@ int Board::evaluatePiece(Player& player, int row, int col) {
     else if (diagonalCount2 == 3) value += 10; // Potential win
     else if (diagonalCount2 == 2) value += 1; // Threat
 
-    return value; // Return the evaluation score for this piece
+    return value; 
 }

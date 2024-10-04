@@ -23,4 +23,6 @@ public:
     void undoDrop(int); // testat
     int evaluatePosition(Ai&, Player&);
     int evaluatePiece(Player&,int,int);
+    int bestColumn();
+    int minMax();
 };
