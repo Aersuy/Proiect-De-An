@@ -3,6 +3,7 @@
 #include "player.hpp"
 #include "board.hpp"
 #include <conio.h> 
+#include <stdlib.h>
 Game::Game()
 {
 //unfinished
@@ -14,8 +15,9 @@ Game::~Game()
 
 void Game::run()
 {    Ai yes;
+     int in;
      Player me;
-     Player you;
+     yes.setDepth(6);
      Board board;
     while (true)
     {
@@ -24,17 +26,18 @@ void Game::run()
         board.printBoard();
          if (me.getWinStat())
           break;
-        board.playerTurn(you);
+
+        board.aiTurn(yes,me);
         system("cls");
         board.printBoard();
-         if (you.getWinStat())
+         if (yes.getWinStat())
           break;
     }
     if (me.getWinStat() == true)
     {
         std::cout << "I won \n";
     }
-     if (you.getWinStat() == true)
+     if (yes.getWinStat() == true)
     {
         std::cout << "You won \n";
     }

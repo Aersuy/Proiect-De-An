@@ -45,10 +45,9 @@ void Board::dropPiece(Player& player,int col)
     c_board[c_top[col]][col] = player.getSym();
     c_top[col]--; 
 }
-void Board::hasWon(Player& Player)
+bool Board::winning(Player& Player)
 {
-  
-
+    
       for (int row = 0; row < Board::c_boardHeight; ++row) {
         for (int col = 0; col < Board::c_boardWidth; ++col) {
             if (c_board[row][col] == Player.getSym()) {
@@ -57,7 +56,7 @@ void Board::hasWon(Player& Player)
                     c_board[row][col + 1] == Player.getSym() &&
                     c_board[row][col + 2] == Player.getSym() &&
                     c_board[row][col + 3] == Player.getSym()) {
-                   Player.setWinStatus(true);
+                   return true;
                 }
 
               
@@ -65,7 +64,7 @@ void Board::hasWon(Player& Player)
                    c_board[row + 1][col] == Player.getSym() &&
                     c_board[row + 2][col] == Player.getSym() &&
                     c_board[row + 3][col] == Player.getSym()) {
-                    Player.setWinStatus(true);
+                    return true;
                 }
 
              
@@ -73,7 +72,7 @@ void Board::hasWon(Player& Player)
                     c_board[row + 1][col + 1] == Player.getSym() &&
                     c_board[row + 2][col + 2] == Player.getSym() &&
                     c_board[row + 3][col + 3] == Player.getSym()) {
-                     Player.setWinStatus(true);
+                    return true;
                 }
 
             
@@ -81,13 +80,16 @@ void Board::hasWon(Player& Player)
                     c_board[row + 1][col - 1] == Player.getSym() &&
                     c_board[row + 2][col - 2] == Player.getSym() &&
                     c_board[row + 3][col - 3] == Player.getSym()) {
-                    Player.setWinStatus(true);
+                      return true;
                 }
             }
         }
     }
-
-
+    return false;
+}
+void Board::hasWon(Player& player)
+{
+    player.setWinStatus(winning(player));
 }
 
 void Board::playerTurn(Player& play)
@@ -138,8 +140,8 @@ void Board::undoDrop(int col)
    
 }
 int Board::evaluatePosition(Ai& ai,Player& player)
-{  this->hasWon(ai);
-   this->hasWon(player);
+{  this->winning(ai);
+   this->winning(player);
     if (ai.getWinStat())
     {
         return 1000;
@@ -155,12 +157,12 @@ int Board::evaluatePosition(Ai& ai,Player& player)
 
             if (current == ai.getSym()) {
                 score += evaluatePiece(ai,row,col);
-                std::cout << score << '\n';
+
             }
            
             else if (current == player.getSym()) {
                 score -= evaluatePiece(player,row,col);
-                std::cout << score << '\n';
+        
             }
         }
     }
@@ -199,7 +201,7 @@ int Board::evaluatePiece(Player& player, int row, int col) {
     for (int i = 1; i < 4; ++i) {
         if (row + i < c_boardHeight && c_board[row + i][col] == symbol) {
             verticalCount++;
-            std::cout << row << ' ' << col << '\n';
+          
         } else {
             break;
         }
@@ -207,7 +209,7 @@ int Board::evaluatePiece(Player& player, int row, int col) {
     for (int i = 1; i < 4; ++i) {
         if (row - i > 1 && c_board[row - i][col] == symbol) {
             verticalCount++;
-            std::cout << row << ' ' << col << '\n';
+
         } else {
             break;
         }
@@ -257,4 +259,62 @@ int Board::evaluatePiece(Player& player, int row, int col) {
     else if (diagonalCount2 == 2) value += 1; // Threat
 
     return value; 
+}
+int Board::minMax(Ai& ai,Player& opponent,int depth, bool isMaximising)
+{
+    if (depth == 0 || this->winning(ai) || this->winning(opponent))
+    {
+      return evaluatePosition(ai,opponent);
+    }
+    if (isMaximising)
+    {
+        int maxValue = -1000000;
+        for (int col = 0; col < c_boardWidth; col++)
+        {
+            if (this->canDropPiece(col))
+            {
+                this->dropPiece(ai,col);
+                int value = minMax(ai,opponent,depth-1,false);
+                this->undoDrop(col);
+                maxValue = std::max(maxValue,value);
+            }
+        }
+        return maxValue;
+    }
+    else
+    {
+        int minValue = 1000000;
+        for (int col = 0; col < c_boardWidth; col++)
+        {
+            if (this->canDropPiece(col))
+            {
+                this->dropPiece(opponent,col);
+                int value = minMax(ai,opponent,depth-1,true);
+                this->undoDrop(col);
+                minValue = std::min(minValue,value);
+            }
+            
+        }
+        return minValue;
+        
+    }
+    
+}
+void Board::aiTurn(Ai& ai, Player& player)
+{   int maxValue = -100000;
+    int bestMove;
+    for (int col = 0; col < c_boardWidth; col++)
+    { 
+        if (this->canDropPiece(col))
+        {
+            this->dropPiece(ai,col);
+            int score = minMax(ai,player,ai.getDepth(),true);
+            this->undoDrop(col);
+            if (score > maxValue)
+            {
+                bestMove = col;
+            }
+        }
+    }
+    this->dropPiece(ai,bestMove);
 }
